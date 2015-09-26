@@ -11,9 +11,18 @@ import java.awt.event.ActionListener;
 public class Board extends JPanel implements ActionListener {
 
     private JLabel statusBar;
+    private Timer timer;
 
     public JLabel getStatusBar() {
         return statusBar;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
     }
 
     public Board(JLabel statusBar) {
@@ -21,7 +30,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent actionEvent) {
 
     }
 

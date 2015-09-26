@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import javax.swing.*;
 
-
 /**
  * Created by jasonyoon on 9/26/15.
  */
@@ -22,12 +21,11 @@ public class TetrisTest {
         String title = "title";
         Board board = new Board(statusBar);
 
-        //when(board.getStatusBar()).thenReturn(statusBar);
-
         // WHEN
         tetris = new Tetris(width, height, title, board);
 
         // THEN
+        // There is no problem
     }
 
 }

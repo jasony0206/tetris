@@ -21,7 +21,7 @@ public class Tetris extends JFrame {
     }
 
     public static void main(String[] args) {
-        JLabel statusBar = new JLabel("0 ")    ;
+        JLabel statusBar = new JLabel("0")    ;
         int width = 200;
         int height = 400;
         String title = "Tetris";
