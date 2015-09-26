@@ -3,7 +3,6 @@ package com.jasonderek.tetris;
 import org.junit.Test;
 
 import javax.swing.*;
-import static org.mockito.Mockito.*;
 
 
 /**
@@ -21,15 +20,14 @@ public class TetrisTest {
         int width = 4;
         int height = 2;
         String title = "title";
-        Board board = mock(Board.class);
+        Board board = new Board(statusBar);
 
-        when(board.getStatusBar()).thenReturn(statusBar);
+        //when(board.getStatusBar()).thenReturn(statusBar);
 
         // WHEN
         tetris = new Tetris(width, height, title, board);
 
         // THEN
-        verify(board, times(1)).start();
     }
 
 }

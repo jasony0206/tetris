@@ -10,19 +10,14 @@ import javax.swing.JLabel;
 
 public class Tetris extends JFrame {
 
-    private JLabel statusBar;
-
     public Tetris(int width, int height, String title, Board board) {
         add(board.getStatusBar(), BorderLayout.NORTH);
         add(board);
+        board.start();
 
         setSize(width, height);
         setTitle(title);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
-    public JLabel getStatusBar() {
-        return statusBar;
     }
 
     public static void main(String[] args) {
