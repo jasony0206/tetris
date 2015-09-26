@@ -9,24 +9,25 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Tetris extends JFrame {
-    JLabel statusBar;
 
-    public Tetris() {
+    public Tetris(int width, int height, String title, Board board) {
+        add(board.getStatusBar(), BorderLayout.NORTH);
+        add(board);
+        board.start();
 
-        statusBar = new JLabel(" 0");
-        add(statusBar, BorderLayout.NORTH);
-
-        setSize(200, 400);
-        setTitle("Tetris");
+        setSize(width, height);
+        setTitle(title);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public JLabel getStatusBar() {
-        return statusBar;
-    }
-
     public static void main(String[] args) {
-        Tetris game = new Tetris();
+        JLabel statusBar = new JLabel("0 ")    ;
+        int width = 200;
+        int height = 400;
+        String title = "Tetris";
+        Board board = new Board(statusBar);
+
+        Tetris game = new Tetris(width, height, title, board);
         game.setLocationRelativeTo(null);
         game.setVisible(true);
     }
