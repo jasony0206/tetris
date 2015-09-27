@@ -10,6 +10,9 @@ public class Board extends JPanel implements ActionListener {
     private JLabel statusBar;
     private Timer timer;
 
+    private int boardWidth;
+    private int boardHeight;
+
     public JLabel getStatusBar() {
         return statusBar;
     }
@@ -20,6 +23,14 @@ public class Board extends JPanel implements ActionListener {
 
     public void setTimer(Timer timer) {
         this.timer = timer;
+    }
+
+    public void setBoardWidth(int boardWidth) {
+        this.boardWidth = boardWidth;
+    }
+
+    public void setBoardHeight(int boardHeight) {
+        this.boardHeight = boardHeight;
     }
 
     public Board(JLabel statusBar) {
@@ -38,4 +49,11 @@ public class Board extends JPanel implements ActionListener {
         timer.start();
     }
 
+    public int squareWidth() {
+        return (int) getSize().getWidth() / boardWidth;
+    }
+
+    public int squareHeight() {
+        return (int) getSize().getHeight() / boardHeight;
+    }
 }

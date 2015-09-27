@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
@@ -73,5 +74,40 @@ public class BoardTest {
         // THEN
         verify(spyTimer, times(1)).start();
     }
+
+    @Test
+    public void canGetSquareWidth() {
+        // GIVEN
+        int panelWidth = 100;
+        board.setSize(panelWidth, 200);
+
+        int boardWidth = 5;
+        board.setBoardWidth(boardWidth);
+
+        // WHEN
+        int actualSquareWidth = board.squareWidth();
+
+        // THEN
+        int expectedSquareWidth = panelWidth / boardWidth;
+        Assert.assertEquals(expectedSquareWidth, actualSquareWidth);
+    }
+
+    @Test
+    public void canGetSquareHeight() {
+        // GIVEN
+        int panelHeight = 100;
+        board.setSize(200, panelHeight);
+
+        int boardHeight = 5;
+        board.setBoardHeight(boardHeight);
+
+        // WHEN
+        int actualSquareHeight = board.squareHeight();
+
+        // THEN
+        int expectedSquareHeight = panelHeight / boardHeight;
+        Assert.assertEquals(expectedSquareHeight, actualSquareHeight);
+    }
+
 
 }
