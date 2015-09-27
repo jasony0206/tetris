@@ -5,12 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-
-/**
- * Created by jasonyoon on 9/26/15.
- */
+import javax.swing.*;
 
 public class BoardTest {
 

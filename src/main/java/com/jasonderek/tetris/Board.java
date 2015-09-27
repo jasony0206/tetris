@@ -1,12 +1,9 @@
 package com.jasonderek.tetris;
 
-import javax.swing.*;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-/**
- * Created by jasonyoon on 9/26/15.
- */
+import javax.swing.*;
 
 public class Board extends JPanel implements ActionListener {
 
@@ -30,10 +27,15 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
+        repaint();
+    }
 
+    public void paint(Graphics g) {
+        System.out.println("running paint");
     }
 
     public void start() {
         timer.start();
     }
+
 }

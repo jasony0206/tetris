@@ -4,10 +4,6 @@ import org.junit.Test;
 
 import javax.swing.*;
 
-/**
- * Created by jasonyoon on 9/26/15.
- */
-
 public class TetrisTest {
 
     private Tetris tetris;
