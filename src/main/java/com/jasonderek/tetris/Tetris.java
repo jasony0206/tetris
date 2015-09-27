@@ -23,9 +23,6 @@ public class Tetris extends JFrame {
 
         Board board = new Board(statusBar, 10, 20);
 
-        Timer timer = new Timer(500, board);
-        board.setTimer(timer);
-
         Tetris game = new Tetris(width, height, title, board);
         game.setLocationRelativeTo(null);
         game.setVisible(true);

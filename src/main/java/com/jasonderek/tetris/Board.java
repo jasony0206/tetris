@@ -1,20 +1,23 @@
 package com.jasonderek.tetris;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Board extends JPanel implements ActionListener {
 
-    private JLabel statusBar;
-    private Timer timer;
+    private static final int DELAY = 500;
 
+    private Timer timer;
+    private JLabel statusBar;
     private int boardWidth;
     private int boardHeight;
 
     public Board(JLabel statusBar, int boardWidth, int boardHeight) {
         this.statusBar = statusBar;
+        this.timer = new Timer(DELAY, this);
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
     }
@@ -48,14 +51,6 @@ public class Board extends JPanel implements ActionListener {
 
     public JLabel getStatusBar() {
         return statusBar;
-    }
-
-    public Timer getTimer() {
-        return timer;
-    }
-
-    public void setTimer(Timer timer) {
-        this.timer = timer;
     }
 
     public int squareWidth() {

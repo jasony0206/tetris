@@ -11,7 +11,6 @@ import javax.swing.*;
 public class BoardTest {
 
     private Board board;
-
     private int boardWidth, boardHeight;
 
     @Before
@@ -47,33 +46,6 @@ public class BoardTest {
 
         // THEN
         verify(spyBoard, atLeastOnce()).actionPerformed(any(ActionEvent.class));
-    }
-
-    @Test
-    public void canSetTimerWithSetter() {
-        // GIVEN
-        Timer expectedTimer = new Timer(1, board);
-
-        // WHEN
-        board.setTimer(expectedTimer);
-
-        // THEN
-        Timer actualTimer = board.getTimer();
-        Assert.assertEquals(expectedTimer, actualTimer);
-    }
-
-    @Test
-    public void TimerShouldStartWhenBoardStarts() {
-        // GIVEN
-        Timer timer = new Timer(1, board);
-        Timer spyTimer = spy(timer);
-        board.setTimer(spyTimer);
-
-        // WHEN
-        board.start();
-
-        // THEN
-        verify(spyTimer, times(1)).start();
     }
 
     @Test

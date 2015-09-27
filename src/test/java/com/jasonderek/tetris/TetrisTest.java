@@ -15,6 +15,7 @@ public class TetrisTest {
         int width = 4;
         int height = 2;
         String title = "title";
+
         Board board = new Board(statusBar, 10, 10);
 
         // WHEN
