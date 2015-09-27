@@ -35,6 +35,6 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void start() {
-
+        timer.start();
     }
 }

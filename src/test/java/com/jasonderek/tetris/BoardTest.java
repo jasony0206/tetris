@@ -1,6 +1,7 @@
 package com.jasonderek.tetris;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
@@ -15,10 +16,14 @@ public class BoardTest {
 
     private Board board;
 
+    @Before
+    public void setup() {
+        board = new Board(new JLabel());
+    }
+
     @Test
     public void shouldTriggerActionPerformedAccordingToSpecifiedDelay() throws InterruptedException {
         // GIVEN
-        board = new Board(new JLabel());
         Board spyBoard = spy(board);
 
         // Timer goes off every ms
@@ -36,7 +41,6 @@ public class BoardTest {
     @Test
     public void canSetTimerWithSetter() {
         // GIVEN
-        board = new Board(new JLabel());
         Timer expectedTimer = new Timer(1, board);
 
         // WHEN
@@ -45,6 +49,20 @@ public class BoardTest {
         // THEN
         Timer actualTimer = board.getTimer();
         Assert.assertEquals(expectedTimer, actualTimer);
+    }
+
+    @Test
+    public void TimerShouldStartWhenBoardStarts() {
+        // GIVEN
+        Timer timer = new Timer(1, board);
+        Timer spyTimer = spy(timer);
+        board.setTimer(spyTimer);
+
+        // WHEN
+        board.start();
+
+        // THEN
+        verify(spyTimer, times(1)).start();
     }
 
 }
