@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
@@ -13,9 +12,11 @@ public class BoardTest {
 
     private Board board;
 
+    private int boardWidth, boardHeight;
+
     @Before
     public void setup() {
-        board = new Board(new JLabel());
+        board = new Board(new JLabel(), boardWidth, boardHeight);
     }
 
     @Test
@@ -24,7 +25,7 @@ public class BoardTest {
         JLabel expectedStatusBar = new JLabel("");
 
         // WHEN
-        board = new Board(expectedStatusBar);
+        board = new Board(expectedStatusBar, boardWidth, boardHeight);
 
         // THEN
         JLabel actualStatusBar = board.getStatusBar();
@@ -76,38 +77,23 @@ public class BoardTest {
     }
 
     @Test
-    public void canGetSquareWidth() {
+    public void canGetSquareWidthAndHeight() {
         // GIVEN
-        int panelWidth = 100;
-        board.setSize(panelWidth, 200);
+        boardWidth = boardHeight = 5;
+        board = new Board(new JLabel(), boardWidth, boardHeight);
 
-        int boardWidth = 5;
-        board.setBoardWidth(boardWidth);
+        int panelWidth = 100;
+        int panelHeight = 200;
+        board.setSize(panelWidth, panelHeight);
 
         // WHEN
         int actualSquareWidth = board.squareWidth();
-
-        // THEN
-        int expectedSquareWidth = panelWidth / boardWidth;
-        Assert.assertEquals(expectedSquareWidth, actualSquareWidth);
-    }
-
-    @Test
-    public void canGetSquareHeight() {
-        // GIVEN
-        int panelHeight = 100;
-        board.setSize(200, panelHeight);
-
-        int boardHeight = 5;
-        board.setBoardHeight(boardHeight);
-
-        // WHEN
         int actualSquareHeight = board.squareHeight();
 
         // THEN
+        int expectedSquareWidth = panelWidth / boardWidth;
         int expectedSquareHeight = panelHeight / boardHeight;
+        Assert.assertEquals(expectedSquareWidth, actualSquareWidth);
         Assert.assertEquals(expectedSquareHeight, actualSquareHeight);
     }
-
-
 }

@@ -21,7 +21,7 @@ public class Tetris extends JFrame {
         String title = "Tetris";
         JLabel statusBar = new JLabel("0");
 
-        Board board = new Board(statusBar);
+        Board board = new Board(statusBar, 10, 20);
 
         Timer timer = new Timer(500, board);
         board.setTimer(timer);
