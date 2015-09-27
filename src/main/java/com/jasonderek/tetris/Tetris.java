@@ -6,7 +6,7 @@ import javax.swing.*;
 public class Tetris extends JFrame {
 
     public Tetris(int width, int height, String title, Board board) {
-        add(board.getStatusBar(), BorderLayout.NORTH);
+        add(board.getStatusBar(), BorderLayout.SOUTH);
         add(board);
         board.start();
 

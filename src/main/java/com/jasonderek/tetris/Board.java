@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import javax.swing.*;
 
 public class Board extends JPanel implements ActionListener {
@@ -33,7 +34,12 @@ public class Board extends JPanel implements ActionListener {
 
     public void paint(Graphics g) {
         System.out.println("running paint");
-        drawSquare(g, 1, 1);
+
+        for (int i = 0; i < boardHeight; i++) {
+            for (int j = 0; j < boardWidth; j++) {
+                drawSquare(g, j * squareWidth(), i * squareHeight());
+            }
+        }
     }
 
     private void drawSquare(Graphics g, int x, int y) {
@@ -46,7 +52,7 @@ public class Board extends JPanel implements ActionListener {
         Color color = colors[0];
 
         g.setColor(color);
-        g.fillRect(x + 1, y + 1, squareWidth() - 2, squareHeight() - 2);
+        g.fillRect(x + 1, y + 1, squareWidth() - 1, squareHeight() - 1);
     }
 
     public JLabel getStatusBar() {
