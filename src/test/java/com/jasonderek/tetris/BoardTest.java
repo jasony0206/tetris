@@ -11,7 +11,8 @@ import javax.swing.*;
 public class BoardTest {
 
     private Board board;
-    private int boardWidth, boardHeight;
+    private int boardWidth = 10;
+    private int boardHeight = 20;
 
     @Before
     public void setup() {
@@ -68,4 +69,22 @@ public class BoardTest {
         Assert.assertEquals(expectedSquareWidth, actualSquareWidth);
         Assert.assertEquals(expectedSquareHeight, actualSquareHeight);
     }
+
+    @Test
+    public void shouldAddSquareToTilesWhenHitsBottom() {
+        // GIVEN
+        board.curX = 0;
+        board.curY = board.getBoardHeight() - 1;
+
+        int oldX = board.curX;
+        int oldY = board.curY;
+
+        // WHEN
+        board.actionPerformedMethod();
+
+        // THEN
+        Assert.assertEquals(true, board.tiles[oldX][oldY]);
+    }
+
+    
 }

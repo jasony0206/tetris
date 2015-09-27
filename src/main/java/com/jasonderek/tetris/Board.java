@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 import javax.swing.*;
 
 public class Board extends JPanel implements ActionListener {
@@ -15,14 +14,18 @@ public class Board extends JPanel implements ActionListener {
     private JLabel statusBar;
     private int boardWidth;
     private int boardHeight;
-    private int curX;
-    private int curY;
+
+    public int curX;
+    public int curY;
+
+    public boolean tiles[][];
 
     public Board(JLabel statusBar, int boardWidth, int boardHeight) {
         this.statusBar = statusBar;
         this.timer = new Timer(DELAY, this);
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
+        tiles = new boolean[boardWidth][boardHeight];
     }
 
     public void start() {
@@ -30,12 +33,23 @@ public class Board extends JPanel implements ActionListener {
         newPiece();
     }
 
-    // fires every tick
     public void actionPerformed(ActionEvent actionEvent) {
+        actionPerformedMethod();
+    }
+
+    public void actionPerformedMethod() {
         if (canMoveTo(curX, curY + 1)) {
             makeMoveTo(curX, curY + 1);
         }
+        else {
+            addToTiles(curX, curY);
+        }
         repaint();
+    }
+
+    private void addToTiles(int x, int y) {
+        if (0 <= x && x < boardWidth && 0 <= y && y < boardHeight)
+            tiles[x][y] = true;
     }
 
     public void paint(Graphics g) {
@@ -55,14 +69,14 @@ public class Board extends JPanel implements ActionListener {
         curY = 0;
     }
 
-    private boolean canMoveTo(int newX, int newY) {
-        if (0 <= newX && newX < boardWidth && 0 <= newY && newY < boardHeight) {
-            return true;
+    public boolean canMoveTo(int newX, int newY) {
+        if (newX < 0 || newX >= boardWidth || newY < 0 || newY >= boardHeight) {
+            return false;
         }
-        return false;
+        return true;
     }
 
-    private void makeMoveTo(int newX, int newY) {
+    public void makeMoveTo(int newX, int newY) {
         curX = newX;
         curY = newY;
         repaint();
@@ -97,5 +111,13 @@ public class Board extends JPanel implements ActionListener {
 
     public int squareHeight() {
         return (int) getSize().getHeight() / boardHeight;
+    }
+
+    public int getBoardWidth() {
+        return boardWidth;
+    }
+
+    public int getBoardHeight() {
+        return boardHeight;
     }
 }
