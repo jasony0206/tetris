@@ -22,6 +22,19 @@ public class BoardTest {
     }
 
     @Test
+    public void canCallConstructorWithStatusBar() {
+        // GIVEN
+        JLabel expectedStatusBar = new JLabel("");
+
+        // WHEN
+        board = new Board(expectedStatusBar);
+
+        // THEN
+        JLabel actualStatusBar = board.getStatusBar();
+        Assert.assertEquals(expectedStatusBar, actualStatusBar);
+    }
+
+    @Test
     public void shouldTriggerActionPerformedAccordingToSpecifiedDelay() throws InterruptedException {
         // GIVEN
         Board spyBoard = spy(board);

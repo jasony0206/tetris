@@ -29,7 +29,6 @@ public class Board extends JPanel implements ActionListener {
         this.statusBar = statusBar;
     }
 
-    @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
     }
