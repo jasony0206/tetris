@@ -48,8 +48,11 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void addToTiles(int x, int y) {
-        if (0 <= x && x < boardWidth && 0 <= y && y < boardHeight)
+        if (0 <= x && x < boardWidth && 0 <= y && y < boardHeight) {
             tiles[x][y] = true;
+
+            newPiece();
+        }
     }
 
     public boolean getTile(int x, int y) {
@@ -61,11 +64,11 @@ public class Board extends JPanel implements ActionListener {
 
         for (int i = 0; i < boardHeight; i++) {
             for (int j = 0; j < boardWidth; j++) {
-                drawSquare(g, j * squareWidth(), i * squareHeight(), false);
+                drawSquare(g, j, i, false);
             }
         }
 
-        drawSquare(g, curX * squareWidth(), curY * squareHeight(), true);
+        drawSquare(g, curX, curY, true);
     }
 
     private void newPiece() {
@@ -77,7 +80,7 @@ public class Board extends JPanel implements ActionListener {
         if (newX < 0 || newX >= boardWidth || newY < 0 || newY >= boardHeight) {
             return false;
         }
-        if (tiles[newX][newY] == true) {
+        if (tiles[newX][newY]) {
             return false;
         }
         return true;
@@ -97,15 +100,18 @@ public class Board extends JPanel implements ActionListener {
         };
 
         Color color;
-        if (isCurPiece) {
+        if (isCurPiece || tiles[x][y]) {
             color = colors[1];
         }
         else {
             color = colors[0];
         }
 
+        int scaledX = x * squareWidth();
+        int scaledY = y * squareHeight();
+
         g.setColor(color);
-        g.fillRect(x + 1, y + 1, squareWidth() - 1, squareHeight() - 1);
+        g.fillRect(scaledX + 1, scaledY + 1, squareWidth() - 1, squareHeight() - 1);
     }
 
     public JLabel getStatusBar() {
