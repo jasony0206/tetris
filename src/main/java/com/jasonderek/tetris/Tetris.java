@@ -1,17 +1,12 @@
 package com.jasonderek.tetris;
 
-/**
- * Created by Derek on 9/25/2015.
- */
-
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class Tetris extends JFrame {
 
     public Tetris(int width, int height, String title, Board board) {
-        add(board.getStatusBar(), BorderLayout.NORTH);
+        add(board.getStatusBar(), BorderLayout.SOUTH);
         add(board);
         board.start();
 
@@ -21,11 +16,12 @@ public class Tetris extends JFrame {
     }
 
     public static void main(String[] args) {
-        JLabel statusBar = new JLabel("0 ")    ;
         int width = 200;
         int height = 400;
         String title = "Tetris";
-        Board board = new Board(statusBar);
+        JLabel statusBar = new JLabel("0");
+
+        Board board = new Board(statusBar, 10, 20);
 
         Tetris game = new Tetris(width, height, title, board);
         game.setLocationRelativeTo(null);
