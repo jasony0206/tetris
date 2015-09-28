@@ -18,7 +18,7 @@ public class Board extends JPanel implements ActionListener {
     public int curX;
     public int curY;
 
-    public boolean tiles[][];
+    private boolean tiles[][];
 
     public Board(JLabel statusBar, int boardWidth, int boardHeight) {
         this.statusBar = statusBar;
@@ -47,9 +47,13 @@ public class Board extends JPanel implements ActionListener {
         repaint();
     }
 
-    private void addToTiles(int x, int y) {
+    public void addToTiles(int x, int y) {
         if (0 <= x && x < boardWidth && 0 <= y && y < boardHeight)
             tiles[x][y] = true;
+    }
+
+    public boolean getTile(int x, int y) {
+        return tiles[x][y];
     }
 
     public void paint(Graphics g) {
@@ -71,6 +75,9 @@ public class Board extends JPanel implements ActionListener {
 
     public boolean canMoveTo(int newX, int newY) {
         if (newX < 0 || newX >= boardWidth || newY < 0 || newY >= boardHeight) {
+            return false;
+        }
+        if (tiles[newX][newY] == true) {
             return false;
         }
         return true;
@@ -111,10 +118,6 @@ public class Board extends JPanel implements ActionListener {
 
     public int squareHeight() {
         return (int) getSize().getHeight() / boardHeight;
-    }
-
-    public int getBoardWidth() {
-        return boardWidth;
     }
 
     public int getBoardHeight() {

@@ -83,8 +83,22 @@ public class BoardTest {
         board.actionPerformedMethod();
 
         // THEN
-        Assert.assertEquals(true, board.tiles[oldX][oldY]);
+        Assert.assertEquals(true, board.getTile(oldX, oldY));
     }
 
-    
+    @Test
+    public void canMoveToReturnsFalseWhenSpotIsTaken() {
+        // GIVEN
+        int x = 3;
+        int y = 4;
+        board.addToTiles(x, y);
+
+        // WHEN
+        boolean result = board.canMoveTo(x, y);
+
+        // THEN
+        Assert.assertFalse(result);
+    }
+
+
 }
